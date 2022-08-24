@@ -26,4 +26,10 @@ jobs:
       
     - name: Build Solution
       run: |
-        msbuild.exe TestApp.sln
+        msbuild.exe TestApp.sln /nologo /nr:false /p:DeployOnBuild=true /p:platform="Any CPU" /p:configuration="Release"
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: TestAppBundle
+        path: "./_build"
